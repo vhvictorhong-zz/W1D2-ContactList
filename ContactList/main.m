@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InputCollector.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        NSLog(@"new - Create a new contact\nlist - List all contacts\nquit - Exit Application ");
+        
+        InputCollector *input = [[InputCollector alloc] init];
+        
+        NSString *print = [input inputForPrompt:@"Input a task"];
+        
+        NSLog(@"%@", print);
+        
     }
     return 0;
 }
