@@ -63,7 +63,20 @@ int main(int argc, const char * argv[]) {
                 }
                 
                 NSLog(@"list");
-            } else if ([firstFourChar isEqualToString:@"show("]) {
+            } else if (([firstFourChar isEqualToString:@"show("]) && ([lastChar isEqualToString:@")"])) {
+                
+                NSString *index = [[inputTask componentsSeparatedByCharactersInSet:
+                                        [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
+                                       componentsJoinedByString:@""];
+                if ([index intValue] <= ([contactList.contactList count] +1)) {
+                    Contact *person = [contactList.contactList objectAtIndex:[index intValue]];
+                    NSString *printName = [NSString stringWithFormat:@"%@: %@", index, person.fullName];
+                    NSString *printEmail = [NSString stringWithFormat:@"%@: %@", index, person.email];
+                    
+                    NSLog(@"%@\n%@",printName, printEmail);
+                } else {
+                    NSLog(@"Not found");
+                }
                 NSLog(@"show");
             } else if ([inputTask isEqualToString:@"find"]) {
                 
