@@ -18,7 +18,9 @@
     
     NSString *inputString = [NSString stringWithCString:inputChars encoding:NSUTF8StringEncoding];
     
-    return inputString;
+    NSString *newString = [[inputString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@""];
+
+    return newString;
     
 }
 
