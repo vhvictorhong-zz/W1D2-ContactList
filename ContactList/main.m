@@ -49,14 +49,31 @@ int main(int argc, const char * argv[]) {
                 NSLog(@"Have a great day");
                 break;
             } else if ([inputTask isEqualToString:@"new"]) {
+                BOOL isDuplicate = false;
                 NSString *fullName = [input inputForPrompt:@"Enter full name:"];
-                NSString *email = [input inputForPrompt:@"Enter e-mail:"];
+                for (int i = 0; i < [contactList.contactList count]; i ++) {
+                    Contact *person = [contactList.contactList objectAtIndex:i];
+                    
+                    NSString *printName = [NSString stringWithFormat:@"%@", person.fullName];
+                    
+                    
+                    if ([printName isEqualToString:fullName]) {
+                        isDuplicate = true;
+                    }
+                    
+                }
                 
-                Contact *newContact = [[Contact alloc] init];
-                newContact.fullName = fullName;
-                newContact.email = email;
-                
-                [contactList addContact:newContact];
+                if (isDuplicate) {
+                    NSLog(@"This contact is already on the list");
+                } else {
+                    NSString *email = [input inputForPrompt:@"Enter e-mail:"];
+                    
+                    Contact *newContact = [[Contact alloc] init];
+                    newContact.fullName = fullName;
+                    newContact.email = email;
+                    
+                    [contactList addContact:newContact];
+                }
                 
             } else if ([inputTask isEqualToString:@"list"]) {
 
@@ -71,7 +88,6 @@ int main(int argc, const char * argv[]) {
                     
                 }
                 
-                NSLog(@"list");
             } else if (([showFilter isEqualToString:@"show("]) && ([lastChar isEqualToString:@")"])) {
                 
                 NSString *index = [[inputTask componentsSeparatedByCharactersInSet:

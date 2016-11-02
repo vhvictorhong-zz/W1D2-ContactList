@@ -20,7 +20,6 @@
 -(void)addContact:(Contact *)newContact {
     
     [self.contactList addObject:newContact];
-    NSLog(@"%@", self.contactList);
     
 }
 
