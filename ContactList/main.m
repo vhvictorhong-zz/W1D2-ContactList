@@ -10,6 +10,7 @@
 #import "InputCollector.h"
 #import "Contact.h"
 #import "ContactList.h"
+#import "History.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -17,6 +18,7 @@ int main(int argc, const char * argv[]) {
         BOOL contineApp = true;
         
         ContactList *contactList = [[ContactList alloc] init];
+        History *history = [[History alloc] init];
         Contact *firstContact = [[Contact alloc] init];
         firstContact.fullName = @"Victor";
         firstContact.email = @"victorhong1988@gmail.com";
@@ -25,14 +27,17 @@ int main(int argc, const char * argv[]) {
         
         while (contineApp) {
             
-            NSLog(@"new - Create a new contact\nlist - List all contacts\nshow(#) - Show contact details\nfind - Find contact\nquit - Exit Application");
+            NSLog(@"new - Create a new contact\nlist - List all contacts\nshow(#) - Show contact details\nfind - Find contact\nhistory - Show history\nquit - Exit Application");
             
             InputCollector *input = [[InputCollector alloc] init];
+            
             NSString *showFilter = [[NSString alloc] init];
             NSString *findFilter = [[NSString alloc] init];
             NSString *lastChar = [[NSString alloc] init];
             
             NSString *inputTask = [input inputForPrompt:@"Input a task:"];
+            [history addHistory:inputTask];
+            
             if ([inputTask length] > 5) {
                 showFilter = [inputTask substringToIndex:5];
             }
@@ -121,6 +126,19 @@ int main(int argc, const char * argv[]) {
                     
                 }
                 
+            } else if ([inputTask isEqualToString:@"history"]) {
+                
+                NSString *lastHistory = [history.historyList objectAtIndex:([history.historyList count] - 1)];
+                if ([history.historyList count] > 2) {
+                    NSString *thirdLastHistory = [history.historyList objectAtIndex:([history.historyList count] - 3)];
+                    NSString *secondLastHistory = [history.historyList objectAtIndex:([history.historyList count] - 2)];
+                    NSLog(@"Last history: %@\nSecond last history: %@\nThird last history: %@", lastHistory, secondLastHistory, thirdLastHistory);
+                } else if ([history.historyList count] > 1) {
+                    NSString *secondLastHistory = [history.historyList objectAtIndex:([history.historyList count] - 2)];
+                    NSLog(@"Last history: %@\nSecond last history: %@", lastHistory, secondLastHistory);
+                } else {
+                    NSLog(@"Last history: %@", lastHistory);
+                }
             }
             
         }

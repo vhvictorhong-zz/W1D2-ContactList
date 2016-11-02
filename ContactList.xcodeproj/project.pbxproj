@@ -11,6 +11,7 @@
 		2B71C48D1DC92D3E00F1446A /* InputCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B71C48C1DC92D3E00F1446A /* InputCollector.m */; };
 		2B71C4901DC933C600F1446A /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B71C48F1DC933C600F1446A /* Contact.m */; };
 		2B71C49C1DC937FF00F1446A /* ContactList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B71C49B1DC937FF00F1446A /* ContactList.m */; };
+		2B71C4B21DC98F8900F1446A /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B71C4B11DC98F8900F1446A /* History.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		2B71C48F1DC933C600F1446A /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		2B71C49A1DC937FF00F1446A /* ContactList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactList.h; sourceTree = "<group>"; };
 		2B71C49B1DC937FF00F1446A /* ContactList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactList.m; sourceTree = "<group>"; };
+		2B71C4B01DC98F8900F1446A /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
+		2B71C4B11DC98F8900F1446A /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 				2B71C48F1DC933C600F1446A /* Contact.m */,
 				2B71C49A1DC937FF00F1446A /* ContactList.h */,
 				2B71C49B1DC937FF00F1446A /* ContactList.m */,
+				2B71C4B01DC98F8900F1446A /* History.h */,
+				2B71C4B11DC98F8900F1446A /* History.m */,
 			);
 			path = ContactList;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 				2B71C49C1DC937FF00F1446A /* ContactList.m in Sources */,
 				2B71C48D1DC92D3E00F1446A /* InputCollector.m in Sources */,
 				2B71C4901DC933C600F1446A /* Contact.m in Sources */,
+				2B71C4B21DC98F8900F1446A /* History.m in Sources */,
 				2B71C4851DC92BE600F1446A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
