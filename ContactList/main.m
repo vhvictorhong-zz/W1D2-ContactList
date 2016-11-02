@@ -28,10 +28,22 @@ int main(int argc, const char * argv[]) {
             NSLog(@"new - Create a new contact\nlist - List all contacts\nshow(#) - Show contact details\nfind - Find contact\nquit - Exit Application");
             
             InputCollector *input = [[InputCollector alloc] init];
+            NSString *showFilter = [[NSString alloc] init];
+            NSString *findFilter = [[NSString alloc] init];
+            NSString *lastChar = [[NSString alloc] init];
             
             NSString *inputTask = [input inputForPrompt:@"Input a task:"];
-            NSString *firstFourChar = [inputTask substringToIndex:5];
-            NSString *lastChar = [inputTask substringFromIndex:[inputTask length] - 1];
+            if ([inputTask length] > 5) {
+                showFilter = [inputTask substringToIndex:5];
+            }
+            
+            if ([inputTask length] > 4) {
+                findFilter = [inputTask substringToIndex:4];
+            }
+            
+            if ([inputTask length] > 0) {
+                lastChar = [inputTask substringFromIndex:[inputTask length] - 1];
+            }
             
             if ([inputTask isEqualToString:@"quit"]) {
                 NSLog(@"Have a great day");
@@ -52,9 +64,6 @@ int main(int argc, const char * argv[]) {
                 for (int i = 0; i < [contactList.contactList count]; i ++) {
                     Contact *person = [contactList.contactList objectAtIndex:i];
                     
-                    NSLog(@"person: %@", person.fullName);
-                    NSLog(@"email: %@", person.email);
-                    
                     NSString *printName = [NSString stringWithFormat:@"%d: %@", i, person.fullName];
                     NSString *printEmail = [NSString stringWithFormat:@"%d: %@", i, person.email];
                     
@@ -63,7 +72,7 @@ int main(int argc, const char * argv[]) {
                 }
                 
                 NSLog(@"list");
-            } else if (([firstFourChar isEqualToString:@"show("]) && ([lastChar isEqualToString:@")"])) {
+            } else if (([showFilter isEqualToString:@"show("]) && ([lastChar isEqualToString:@")"])) {
                 
                 NSString *index = [[inputTask componentsSeparatedByCharactersInSet:
                                         [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
@@ -78,7 +87,23 @@ int main(int argc, const char * argv[]) {
                     NSLog(@"Not found");
                 }
                 NSLog(@"show");
-            } else if ([inputTask isEqualToString:@"find"]) {
+            } else if ([findFilter isEqualToString:@"find"]) {
+                int trimSearch = [inputTask length] - 5;
+                NSString *search = [inputTask substringFromIndex:[inputTask length] - trimSearch];
+                
+                for (int i = 0; i < [contactList.contactList count]; i ++) {
+                    Contact *person = [contactList.contactList objectAtIndex:i];
+                    
+                    NSString *printName = [NSString stringWithFormat:@"%@", person.fullName];
+                    NSString *printEmail = [NSString stringWithFormat:@"%@", person.email];
+                    
+                    if ([printName containsString:search]) {
+                        NSLog(@"%@\n%@",printName, printEmail);
+                    } else {
+                        NSLog(@"Can't be found");
+                    }
+                    
+                }
                 
             }
             
